@@ -1,0 +1,31 @@
+<div class="flex align-items-center justify-content-center" style="height: 97vh; background-color: #cdd6e4">
+  <p-card header="Login" [style]="{ width: '500px', borderRadius: '8px' }" styleClass="shadow-2">
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <div class="w-full flex flex-column align-items-center justify-content-center gap-4 py-5">
+        <div class="flex flex-wrap justify-content-center align-items-center gap-2">
+          <label class="w-6rem font-semibold">Username</label>
+          <input pInputText type="text" class="w-12rem" placeholder="Username" formControlName="username" />
+          <div *ngIf="username?.errors && (username?.dirty || username?.touched)" style="color: red;">
+            <small *ngIf="username?.errors?.['required']">Usuario es obligatorio</small>
+            <small *ngIf="username?.errors?.['minlength']">Tener al menos 4 caracteres</small>
+            <small *ngIf="username?.errors?.['specialChars']">No caracteres especiales</small>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap justify-content-center align-items-center gap-2">
+          <label class="w-6rem font-semibold">Password</label>
+          <input pInputText type="password" class="w-12rem" placeholder="Password" formControlName="password" />
+          <div *ngIf="password?.errors && (password?.dirty || password?.touched)" style="color: red;">
+            <small *ngIf="password?.errors?.['required']">Contraseña obligatoria.</small>
+            <small *ngIf="password?.errors?.['minlength']">Tener al menos 5 caracteres.</small>
+          </div>
+        </div>
+
+        <p-button label="Login" icon="pi pi-user" type="submit" styleClass="w-10rem mx-auto" class="p-button-rounded p-button-primary" [disabled]="loginForm.invalid"></p-button>
+        <div *ngIf="errorMessage" class="error-message" style="color: red;">{{ errorMessage }}</div>
+      </div>
+    </form>
+  </p-card>
+</div>
+
+

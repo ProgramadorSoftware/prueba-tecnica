@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+/* Importando directamente desde node_modules */
+/* @import 'ngx-spinner/animations/ball-newton-cradle.css'; */
+@import 'primeicons/primeicons.css';
+@import 'primeflex/primeflex.css';
+

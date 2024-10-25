@@ -1,0 +1,41 @@
+<app-menu></app-menu>
+<h2>Lista Tareas</h2>
+<p-table
+  [value]="tasks"
+  [paginator]="true"
+  [rows]="5"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [rowsPerPageOptions]="[5, 10, 20]"
+>
+<ng-template pTemplate="caption">
+  <div class="flex">
+      <p-button label="Crear" [outlined]="true" icon="pi pi-save" (click)="getCrear()"  />
+      <span class="p-input-icon-left ml-auto"></span>
+  </div>
+</ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Estado</th>
+      <th>Accion</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-tasks>
+    <tr>
+      <td>{{ tasks.id }}</td>
+      <td>{{ tasks.title }}</td>
+      <td>
+        <p-checkbox [binary]="true" [ngModel]="tasks.completed" disabled></p-checkbox>
+      </td>
+      <td>
+        <button (click)="update(tasks.id)" pButton pRipple label="Update" severity="success"></button>
+      </td>
+      <td>
+        <p-button (click)="confirmDelete(tasks.id)" label="Delete" severity="danger" [outlined]="true"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+

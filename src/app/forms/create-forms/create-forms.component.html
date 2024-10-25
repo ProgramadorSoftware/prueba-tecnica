@@ -1,0 +1,49 @@
+<div class="mt-4 flex justify-content-center flex-wrap">
+  <h1>Crear-Editar (Proyecto-Tarea)</h1>
+</div>
+<div class="card centered-div">
+  <p-fieldset
+    legend="Proyecto / Tareas"
+    class="custom-fieldset"
+    [style]="{ width: '500px' }"
+  >
+    <form [formGroup]="tareaForm" (ngSubmit)="submit()">
+      <div class="mt-4 flex justify-content-center flex-wrap">
+        <p-floatLabel>
+          <input id="title" formControlName="title" type="text" pInputText />
+          <label for="title">Title</label>
+        </p-floatLabel>
+      </div>
+      <div
+        *ngIf="
+          tareaForm.get('title')?.invalid &&
+          (tareaForm.get('title')?.touched || tareaForm.get('title')?.dirty)
+        "
+      >
+        <small *ngIf="tareaForm.get('title')?.errors?.['required']"
+          >El título es obligatorio.</small
+        >
+      </div>
+
+      <div class="checkbox mt-4 justify-content-start flex-wrap">
+        <p-checkbox
+          id="completed"
+          formControlName="completed"
+          value="completed"
+          inputId="ny"
+        />
+        <label for="completed">Completed</label>
+      </div>
+
+      <div class="mt-4 flex justify-content-center flex-wrap">
+        <p-button
+          label="Guardar"
+          severity="success"
+          class="m-2"
+          type="submit"
+          [disabled]="tareaForm.invalid"
+        />
+      </div>
+    </form>
+  </p-fieldset>
+</div>
